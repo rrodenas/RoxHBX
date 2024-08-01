@@ -1,21 +1,63 @@
-
 version: 2
 
-models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+sources:
+  - name: my_database
+    schema: public
+    tables:
+      - name: travel_bookings_data
+        description: "Table containing all travel booking information."
+        columns:
+          - name: Customer ID
+            description: "Unique identifier for the customer."
+          - name: Booking Date
+            description: "Date when the booking was made."
+          - name: Travel Destination
+            description: "Destination of the travel."
+          - name: Travel Start Date
+            description: "Start date of the travel."
+          - name: Travel End Date
+            description: "End date of the travel."
+          - name: Booking Amount
+            description: "Total amount for the booking."
+          - name: Service Type
+            description: "Type of service booked (e.g., Flight, Hotel, Car Rental)."
+      - name: customer_data
+        description: "Table containing customer information."
+        columns:
+          - name: Customer ID
+            description: "Unique identifier for the customer."
+          - name: Company Name
+            description: "Name of the company."
+          - name: Industry
+            description: "Industry in which the company operates."
+          - name: Contact Person
+            description: "Primary contact person for the company."
+          - name: Contact Email
+            description: "Email address of the contact person."
+          - name: Location
+            description: "Location of the company."
+          - name: Number of Employees
+            description: "Total number of employees in the company."
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+models:
+  - name: travel_bookings_summary
+    description: "Summary of travel bookings by customer."
+    columns:
+      - name: Customer ID
+        description: "Unique identifier for the customer."
+      - name: Company Name
+        description: "Name of the company."
+      - name: Industry
+        description: "Industry in which the company operates."
+      - name: Contact Person
+        description: "Primary contact person for the company."
+      - name: Contact Email
+        description: "Email address of the contact person."
+      - name: Location
+        description: "Location of the company."
+      - name: Number of Employees
+        description: "Total number of employees in the company."
+      - name: total_bookings
+        description: "Total number of bookings made by the customer."
+      - name: total_booking_amount
+        description: "Total amount of all bookings made by the customer."
